@@ -6,8 +6,8 @@ class Spaceship extends Floater {
     yCorners=new int[]{0,4,6,6,10,10,7,7,-7,-7,-10,-10,-6,-6,-4,0};
     windowX=new int[]{28,24,15,15,24,28};
     windowY=new int[]{0,4,6,-6,-4,0};
-    plumeX=new int[]{-22,-28,-30,-28,-22};
-    plumeY=new int[]{6,4,0,4,6};
+    plumeX=new int[]{-22,-32,-40,-32,-22};
+    plumeY=new int[]{6,4,0,-4,-6};
     myColor=color(200,200,200);
     myCenterX=300;
     myCenterY=300;
@@ -15,7 +15,7 @@ class Spaceship extends Floater {
     myYspeed=0;
     myPointDirection=0;
   }
-  public void showWindow(){
+  public void showWindowPlume(){
     //translate the (x,y) center of the ship to the correct position
     translate((float)myCenterX, (float)myCenterY);
     //convert degrees to radians for rotate()     
@@ -26,26 +26,17 @@ class Spaceship extends Floater {
     fill(10,90,240);
     beginShape();
     for (int i = 0; i < windowX.length; i++)
-    {
       vertex(windowX[i], windowY[i]);
-    }
     endShape();
-  }
-  public void showPlume(){
-    //translate the (x,y) center of the ship to the correct position
-    translate((float)myCenterX, (float)myCenterY);
-    //convert degrees to radians for rotate()     
-    float dRadians = (float)(myPointDirection*(Math.PI/180));
-    //rotate so that the polygon will be drawn in thde correct direction
-    rotate(dRadians);
-    //draw the plume
-    fill(220,70,45);
-    beginShape();
-    for (int i = 0; i < plumeX.length; i++)
-    {
-      vertex(plumeX[i],plumeY[i]);
+    if(WPressed==true){
+      //draw the plume
+      noStroke();
+      fill(220,70,45);
+      beginShape();
+      for (int i = 0; i < plumeX.length; i++)
+        vertex(plumeX[i],plumeY[i]);
+      endShape();
     }
-    endShape();
   }
   public void hyperspace(){
     //convert degrees to radians for rotate()
