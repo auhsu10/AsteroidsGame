@@ -1,5 +1,10 @@
 //your variable declarations here
 Star[] starsG1=new Star[500];
+Spaceship shipone = new Spaceship();
+public boolean WPressed=false;
+public boolean APressed=false;
+public boolean SPressed=false;
+public boolean DPressed=false;
 public void setup(){
   size(600,600);
   for(int i=0;i<starsG1.length;i++)
@@ -7,26 +12,55 @@ public void setup(){
 }
 public void draw(){
   background(0);
-  for(int i=0;i<starsG1.length;i++){
+  for(int i=0;i<starsG1.length;i++)
     starsG1[i].show();
-  }
   shipone.show();
+  shipone.showWindow();
+  shipone.move();
+  if(WPressed==true){
+    shipone.accelerate(0.1);
+    //shipone.showPlume();
+  }
+  if(SPressed==true){
+    shipone.accelerate(-1*0.1);
+  }
+  if(APressed==true){
+    shipone.turn(-1*4);
+  }
+  if(DPressed==true){
+    shipone.turn(4);
+  }
 } 
 
 public void keyPressed(){
-  if(key=='w'||key=='W'){
-    shipone.accelerate(0.2);
+  if(keyCode==87){
+    WPressed=true;
   }
-  if(key=='s'||key=='S'){
-    shipone.accelerate(-1*0.2);
+  if(keyCode==83){
+    SPressed=true;
   }
-  if(key=='a'||key=='A'){
-    shipone.turn(-1*0.01);
+  if(keyCode==65){
+    APressed=true;
   }
-  if(key=='d'||key=='D'){
-    shipone.turn(0.01);
+  if(keyCode==68){
+    DPressed=true;
   }
   if(key=='h'||key=='H'){
     shipone.hyperspace();
+  }
+}
+
+public void keyReleased(){
+  if(keyCode==87){
+    WPressed=false;
+  }
+  if(keyCode==83){
+    SPressed=false;
+  }
+  if(keyCode==65){
+    APressed=false;
+  }
+  if(keyCode==68){
+    DPressed=false;
   }
 }
