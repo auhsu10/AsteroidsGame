@@ -15,11 +15,10 @@ public void draw(){
   for(int i=0;i<starsG1.length;i++)
     starsG1[i].show();
   shipone.show();
-  shipone.showWindow();
+  shipone.showWindowPlume();
   shipone.move();
   if(WPressed==true){
     shipone.accelerate(0.1);
-    //shipone.showPlume();
   }
   if(SPressed==true){
     shipone.accelerate(-1*0.1);
