@@ -1,10 +1,13 @@
-Spaceship shipone = new Spaceship();
-
 class Spaceship extends Floater { 
+  private int[] windowX, windowY,plumeX,plumeY;
   public Spaceship(){
-    corners=10;
-    xCorners=new int[]{28,20,-9,-12,-25,-25,-12,-9,20};
-    yCorners=new int[]{0,6,6,9,9,-9,-9,-6,-6,0};
+    corners=16;
+    xCorners=new int[]{30,25,20,-9,-12,-30,-28,-20,-20,-28,-30,-12,-9,20,25,30};
+    yCorners=new int[]{0,4,6,6,10,10,7,7,-7,-7,-10,-10,-6,-6,-4,0};
+    windowX=new int[]{28,24,15,15,24,28};
+    windowY=new int[]{0,4,6,-6,-4,0};
+    plumeX=new int[]{-22,-28,-30,-28,-22};
+    plumeY=new int[]{6,4,0,4,6};
     myColor=color(200,200,200);
     myCenterX=300;
     myCenterY=300;
@@ -12,46 +15,50 @@ class Spaceship extends Floater {
     myYspeed=0;
     myPointDirection=0;
   }
+  public void showWindow(){
+    //translate the (x,y) center of the ship to the correct position
+    translate((float)myCenterX, (float)myCenterY);
+    //convert degrees to radians for rotate()     
+    float dRadians = (float)(myPointDirection*(Math.PI/180));
+    //rotate so that the polygon will be drawn in the correct direction
+    rotate(dRadians);
+    //draw the window
+    fill(10,90,240);
+    beginShape();
+    for (int i = 0; i < windowX.length; i++)
+    {
+      vertex(windowX[i], windowY[i]);
+    }
+    endShape();
+  }
+  public void showPlume(){
+    //translate the (x,y) center of the ship to the correct position
+    translate((float)myCenterX, (float)myCenterY);
+    //convert degrees to radians for rotate()     
+    float dRadians = (float)(myPointDirection*(Math.PI/180));
+    //rotate so that the polygon will be drawn in thde correct direction
+    rotate(dRadians);
+    //draw the plume
+    fill(220,70,45);
+    beginShape();
+    for (int i = 0; i < plumeX.length; i++)
+    {
+      vertex(plumeX[i],plumeY[i]);
+    }
+    endShape();
+  }
   public void hyperspace(){
+    //convert degrees to radians for rotate()
+    float dRadians = (float)(myPointDirection*(Math.PI/180));
+    //rotate so that the polygon will be drawn in the correct direction
+    rotate(-1*dRadians);
+    //translate the (x,y) center of the ship to the correct position
+    translate((float)(-1*myCenterX),(float)(-1*myCenterY));
+    fill(60,125,250);
+    rect(-100,-100,800,800);
     myXspeed=0;
     myYspeed=0;
     myCenterX=Math.random()*600;
     myCenterY=Math.random()*600;
-  }
-  public void setCenterX(){
-    myCenterX+=myXspeed;
-  }
-  public double getCenterX(){
-    return myCenterX;
-  }
-  public void setCenterY(){
-    myCenterY+=myYspeed;
-  }
-  public double getCenterY(){
-    return myCenterY;
-  }
-  public double getRotate(){
-    return myPointDirection;
-  }
-  public void setXspeed(double x){
-    myXspeed+=x;
-  }
-  public void setYspeed(double y){
-    myYspeed+=y;
-  }
-  public double getXspeed(){
-    return myXspeed;
-  }
-  public double getYspeed(){
-    return myYspeed;
-  }
-  public void show(){
-    stroke(0);
-    fill(160);
-    beginShape();
-    for(int i=0;i<xCorners.length;i++){
-      vertex((float)(myCenterX+xCorners[i]),(float)(myCenterY+yCorners[i]));
-    }
-    endShape();
   }
 }
