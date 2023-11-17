@@ -37,6 +37,22 @@ class Spaceship extends Floater {
         vertex(plumeX[i],plumeY[i]);
       endShape();
     }
+    if(SPressed==true){
+      //draw the plume
+      stroke(255);
+      line(24,6,34,8);
+      line(24,-6,34,-8);
+    }
+    if(APressed==true){
+      //draw the plume
+      stroke(255);
+      line(22,6,22,20);
+    }
+    if(DPressed==true){
+      //draw the plume
+      stroke(255);
+      line(22,-6,22,-20);
+    }
   }
   public void hyperspace(){
     //convert degrees to radians for rotate()
