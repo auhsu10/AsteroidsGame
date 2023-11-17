@@ -21,7 +21,7 @@ public void draw(){
     shipone.accelerate(0.1);
   }
   if(SPressed==true){
-    shipone.accelerate(-1*0.1);
+    shipone.accelerate(-1*0.05);
   }
   if(APressed==true){
     shipone.turn(-1*4);
