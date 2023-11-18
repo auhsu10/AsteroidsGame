@@ -55,14 +55,7 @@ class Spaceship extends Floater {
     }
   }
   public void hyperspace(){
-    //convert degrees to radians for rotate()
-    float dRadians = (float)(myPointDirection*(Math.PI/180));
-    //rotate so that the polygon will be drawn in the correct direction
-    rotate(-1*dRadians);
-    //translate the (x,y) center of the ship to the correct position
-    translate((float)(-1*myCenterX),(float)(-1*myCenterY));
-    fill(60,125,250);
-    rect(-100,-100,800,800);
+    background(60,125,250);
     myXspeed=0;
     myYspeed=0;
     myCenterX=Math.random()*600;
