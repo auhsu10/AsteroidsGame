@@ -1,4 +1,4 @@
-class Spaceship extends Floater { 
+public class Spaceship extends Floater { 
   private int[] windowX, windowY,plumeX,plumeY;
   public Spaceship(){
     corners=16;
