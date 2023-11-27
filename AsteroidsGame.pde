@@ -1,6 +1,6 @@
 //your variable declarations here
-public Star[] starsG1=new Star[500];
-public Spaceship shipone = new Spaceship();
+Star[] starsG1=new Star[500];
+Spaceship shipone = new Spaceship();
 public boolean WPressed=false;
 public boolean APressed=false;
 public boolean SPressed=false;
