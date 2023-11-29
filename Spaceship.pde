@@ -53,6 +53,9 @@ public class Spaceship extends Floater {
       stroke(255);
       line(22,-6,22,-20);
     }
+    //"unrotate" and "untranslate" in reverse order
+    rotate(-1*dRadians);
+    translate(-1*(float)myCenterX, -1*(float)myCenterY);
   }
   public void hyperspace(){
     background(60,125,250);
@@ -61,5 +64,11 @@ public class Spaceship extends Floater {
     myCenterX=Math.random()*600;
     myCenterY=Math.random()*600;
     myPointDirection=Math.random()*600;
+  }
+  public double getX(){
+    return myCenterX;
+  }
+  public double getY(){
+    return myCenterY;
   }
 }
