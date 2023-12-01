@@ -18,7 +18,7 @@ public void setup(){
 public void draw(){
   background(0);
   if(gameOver==false)
-    time+=0.016;
+    time+=0.02;
   for(int i=0;i<starsG1.length;i++)
     starsG1[i].show();
   shipone.show();
