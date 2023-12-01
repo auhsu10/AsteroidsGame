@@ -6,15 +6,19 @@ public boolean WPressed=false;
 public boolean APressed=false;
 public boolean SPressed=false;
 public boolean DPressed=false;
+public boolean gameOver=false;
+public double time=0;
 public void setup(){
   size(600,600);
   for(int i=0;i<starsG1.length;i++)
     starsG1[i]=new Star();
-  for(int i=0;i<10;i++)
+  for(int i=0;i<25;i++)
     rocks.add(i,new Asteroid());
 }
 public void draw(){
   background(0);
+  if(gameOver==false)
+    time+=0.016;
   for(int i=0;i<starsG1.length;i++)
     starsG1[i].show();
   shipone.show();
@@ -42,6 +46,35 @@ public void draw(){
   if(DPressed==true){
     shipone.turn(6);
   }
+  stroke(255);
+  fill(50,50,50,50);
+  beginShape();
+  vertex(50,0);
+  vertex(75,30);
+  vertex(525,30);
+  vertex(550,0);
+  endShape();
+  fill(250);
+  textAlign(CENTER);
+  textSize(15);
+  text("Time: "+(int)time+" seconds",175,20);
+  text("Number of Asteroids left:"+rocks.size(),400,20);
+  if(rocks.size()==0){
+    gameOver=true;
+    stroke(255);
+    fill(50,50,50,50);
+    beginShape();
+    vertex(200,265);
+    vertex(400,265);
+    vertex(400,320);
+    vertex(200,320);
+    vertex(200,265);
+    endShape();
+    noStroke();
+    fill(250);
+    textSize(25);
+    text("Game Over!",300,300);
+  }
 } 
 
 public void keyPressed(){
@@ -61,12 +94,16 @@ public void keyPressed(){
     shipone.hyperspace();
   }
   if(key=='r'||key=='R'){
-    for(int i=0;i<rocks.size();i++){
+    if(gameOver==true)
+      gameOver=false;
+    for(int i=rocks.size()-1;i>=0;i--){
       rocks.remove(i);
     }
-    for(int i=0;i<10;i++){
+    for(int i=0;i<25;i++){
       rocks.add(i,new Asteroid());
     }
+    shipone.hyperspace();
+    time=0;
     redraw();
   }
 }
