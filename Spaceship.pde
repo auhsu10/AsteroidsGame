@@ -58,7 +58,8 @@ public class Spaceship extends Floater {
     translate(-1*(float)myCenterX, -1*(float)myCenterY);
   }
   public void hyperspace(){
-    background(60,125,250);
+    if(gameOver==false);
+      background(60,125,250);
     myXspeed=0;
     myYspeed=0;
     myCenterX=Math.random()*600;
