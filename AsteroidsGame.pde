@@ -1,5 +1,5 @@
 //your variable declarations here
-public Star[] starsG1=new Star[500];
+public Star[] starsG1=new Star[250];
 public ArrayList <Asteroid> rocks = new ArrayList <Asteroid>();
 public Spaceship shipone = new Spaceship();
 public boolean WPressed=false;
@@ -58,7 +58,7 @@ public void draw(){
   textAlign(CENTER);
   textSize(15);
   text("Time: "+(int)time+" seconds",175,20);
-  text("Number of Asteroids left:"+rocks.size(),400,20);
+  text("Number of Asteroids left: r"+rocks.size(),400,20);
   if(rocks.size()==0){
     gameOver=true;
     stroke(255);
