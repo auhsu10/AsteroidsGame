@@ -1,6 +1,7 @@
 //your variable declarations here
-public Star[] starsG1=new Star[250];
+public Star[] starsG1=new Star[100];
 public ArrayList <Asteroid> rocks = new ArrayList <Asteroid>();
+public ArrayList <Bullet> bullets = new ArrayList <Bullet>();
 public Spaceship shipone = new Spaceship();
 public boolean WPressed=false;
 public boolean APressed=false;
@@ -46,6 +47,9 @@ public void draw(){
   }
   if(DPressed==true){
     shipone.turn(6);
+  }
+  if(FPressed==true){
+    bullets.add(new Bullet());
   }
   stroke(255);
   fill(50,50,50,50);
