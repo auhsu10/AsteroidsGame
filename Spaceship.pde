@@ -2,11 +2,11 @@ public class Spaceship extends Floater {
   private int[] windowX, windowY,plumeX,plumeY;
   public Spaceship(){
     corners=16;
-    xCorners=new int[]{30,25,20,-9,-12,-30,-28,-20,-20,-28,-30,-12,-9,20,25,30};
+    xCorners=new int[]{15,10,5,0,-12,-15,-14,-6,-6,-14,-15,-12,0,5,10,15};
     yCorners=new int[]{0,4,6,6,10,10,7,7,-7,-7,-10,-10,-6,-6,-4,0};
-    windowX=new int[]{28,24,15,15,24,28};
-    windowY=new int[]{0,4,6,-6,-4,0};
-    plumeX=new int[]{-22,-32,-40,-32,-22};
+    windowX=new int[]{14,12,8,8,12,14};
+    windowY=new int[]{0,4,5,-5,-4,0};
+    plumeX=new int[]{-8,-18,-25,-18,-8};
     plumeY=new int[]{6,4,0,-4,-6};
     myColor=color(200,200,200);
     myCenterX=300;
@@ -40,18 +40,18 @@ public class Spaceship extends Floater {
     if(SPressed==true){
       //draw the plume
       stroke(255);
-      line(24,6,34,8);
-      line(24,-6,34,-8);
+      line(12,6,22,8);
+      line(12,-6,22,-8);
     }
     if(APressed==true){
       //draw the plume
       stroke(255);
-      line(22,6,22,20);
+      line(12,6,12,18);
     }
     if(DPressed==true){
       //draw the plume
       stroke(255);
-      line(22,-6,22,-20);
+      line(12,-6,12,-18);
     }
     //"unrotate" and "untranslate" in reverse order
     rotate(-1*dRadians);
@@ -71,5 +71,14 @@ public class Spaceship extends Floater {
   }
   public double getY(){
     return myCenterY;
+  }
+  public double getXspeed(){
+    return myXspeed;
+  }
+  public double getYspeed(){
+    return myYspeed;
+  }
+  public double getPointDirection(){
+    return myPointDirection;
   }
 }
