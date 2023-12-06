@@ -6,6 +6,7 @@ public boolean WPressed=false;
 public boolean APressed=false;
 public boolean SPressed=false;
 public boolean DPressed=false;
+public boolean FPressed=false;
 public boolean gameOver=false;
 public double time=0;
 public void setup(){
@@ -18,7 +19,7 @@ public void setup(){
 public void draw(){
   background(0);
   if(gameOver==false)
-    time+=0.02;
+    time+=0.016;
   for(int i=0;i<starsG1.length;i++)
     starsG1[i].show();
   shipone.show();
@@ -26,7 +27,7 @@ public void draw(){
   shipone.move();
   for(int i=0;i<rocks.size();i++){
     float d=dist((float)shipone.getX(),(float)shipone.getY(),(float)rocks.get(i).getX(),(float)rocks.get(i).getY());
-    if(d<=20){
+    if(d<=25){
       rocks.remove(i);
     }
     else{
@@ -90,6 +91,9 @@ public void keyPressed(){
   if(keyCode==68){
     DPressed=true;
   }
+  if(keyCode==70){
+    FPressed=true;
+  }
   if(key=='h'||key=='H'){
     shipone.hyperspace();
   }
@@ -120,5 +124,8 @@ public void keyReleased(){
   }
   if(keyCode==68){
     DPressed=false;
+  }
+  if(keyCode==70){
+    FPressed=false;
   }
 }
