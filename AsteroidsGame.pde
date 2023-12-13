@@ -2,16 +2,19 @@
 public Star[] starsG1=new Star[60];
 public ArrayList <Asteroid> rocks = new ArrayList <Asteroid>();
 public ArrayList <Bullet> bullets = new ArrayList <Bullet>();
+public ArrayList <Torpedo> torpedoes = new ArrayList <Torpedo>();
 public Spaceship shipone = new Spaceship();
 public boolean WPressed=false;
 public boolean APressed=false;
 public boolean SPressed=false;
 public boolean DPressed=false;
 public boolean FPressed=false;
+public boolean TPressed=false;
 public boolean gameOver=false;
 public double time=0;
 public int shiphealth=100;
 public int ammo=100;
+public int ammo2=4;
 public void setup(){
   size(600,600);
   for(int i=0;i<starsG1.length;i++)
@@ -30,6 +33,15 @@ public void draw(){
       bullets.get(i).accelerate();
       if((bullets.get(i).myCenterX>width)||(bullets.get(i).myCenterY>height))
         bullets.remove(i);
+    }
+  }
+  if(torpedoes.size()>0){
+    for(int i=0;i<torpedoes.size();i++){
+      torpedoes.get(i).show();
+      torpedoes.get(i).move();
+      torpedoes.get(i).accelerate();
+      if((torpedoes.get(i).myCenterX>width)||(torpedoes.get(i).myCenterY>height))
+        torpedoes.remove(i);
     }
   }
   for(int i=0;i<starsG1.length;i++)
@@ -58,6 +70,16 @@ public void draw(){
       }
     }
   }
+  for(int i=0;i<rocks.size();i++){
+    for(int j=0;j<torpedoes.size();j++){
+      float r=dist((float)torpedoes.get(j).getX(),(float)torpedoes.get(j).getY(),(float)rocks.get(i).getX(),(float)rocks.get(i).getY());
+      if(r<=50){
+        rocks.remove(i);
+        torpedoes.remove(j);
+        break;
+      }
+    }
+  }
   if(WPressed==true && shiphealth>0)
     shipone.accelerate(0.1);
   if(SPressed==true && shiphealth>0)
@@ -70,6 +92,12 @@ public void draw(){
     if(ammo>0){
       ammo--;
       bullets.add(new Bullet());
+    }
+  }
+  if(TPressed==true && shiphealth>0){
+    if(ammo2>0){
+      ammo2--;
+      torpedoes.add(new Torpedo());
     }
   }
   for(int i=0;i<bullets.size();i++){
@@ -95,7 +123,7 @@ public void draw(){
   textSize(15);
   text("Time: "+(int)time+" seconds",175,20);
   text("Number of Asteroids left: "+rocks.size(),400,20);
-  text("Ammo: "+ammo+" bullets left",185,590);
+  text("Ammo: "+ammo+" bullets   "+ammo2+" torpedoes",205,590);
   text("Ship health: "+shiphealth+"%",420,590);
   if(rocks.size()==0||shiphealth<=0){
     gameOver=true;
@@ -145,16 +173,17 @@ public void keyPressed(){
       APressed=true;
     if(key=='d'||key=='D')
       DPressed=true;
-    if(key=='f'||key=='F'){
+    if(key=='f'||key=='F')
       FPressed=true;
-      bullets.add(new Bullet());
-    }
+    if(key=='t'||key=='T')
+      TPressed=true;
     if(key=='h'||key=='H')
       shipone.hyperspace();
   }
   if(key=='r'||key=='R'){
     shiphealth=100;
     ammo=100;
+    ammo2=4;
     if(gameOver==true)
       gameOver=false;
     for(int i=rocks.size()-1;i>=0;i--)
@@ -180,4 +209,6 @@ public void keyReleased(){
     DPressed=false;
   if(key=='f'||key=='F'||shiphealth<=0)
     FPressed=false;
+  if(key=='t'||key=='T'||shiphealth<=0)
+    TPressed=false;
 }
