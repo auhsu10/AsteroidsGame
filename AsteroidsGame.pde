@@ -89,13 +89,13 @@ public void draw(){
     }
   }
   if(WPressed==true && shiphealth>0)
-    shipone.accelerate(0.2);
+    shipone.accelerate(0.15);
   if(SPressed==true && shiphealth>0)
-    shipone.accelerate(-1*0.1);
+    shipone.accelerate(-1*0.15);
   if(APressed==true && shiphealth>0)
-    shipone.turn(-1*10);
+    shipone.turn(-1*8);
   if(DPressed==true && shiphealth>0)
-    shipone.turn(10);
+    shipone.turn(8);
   if(FPressed==true && shiphealth>0){
     if(ammo>0){
       ammo--;
