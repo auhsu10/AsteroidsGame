@@ -108,10 +108,6 @@ public void draw(){
       torpedoes.add(new Torpedo());
     }
   }
-  for(int i=0;i<bullets.size();i++){
-    if(ammo<=0)
-      bullets.remove(i);
-  }
   stroke(255);
   fill(50,50,50,50);
   beginShape();
