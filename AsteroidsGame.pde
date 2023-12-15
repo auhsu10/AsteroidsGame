@@ -65,6 +65,10 @@ public void draw(){
       float r=dist((float)bullets.get(j).getX(),(float)bullets.get(j).getY(),(float)rocks.get(i).getX(),(float)rocks.get(i).getY());
       if(r<=20){
         rocks.remove(i);
+        noStroke();
+        fill(220,0,0);
+        ellipse((float)bullets.get(j).getX(),(float)bullets.get(j).getY(),20,20);
+        ellipse((float)bullets.get(j).getX(),(float)bullets.get(j).getY(),20,20);
         bullets.remove(j);
         break;
       }
@@ -73,8 +77,12 @@ public void draw(){
   for(int i=0;i<rocks.size();i++){
     for(int j=0;j<torpedoes.size();j++){
       float r=dist((float)torpedoes.get(j).getX(),(float)torpedoes.get(j).getY(),(float)rocks.get(i).getX(),(float)rocks.get(i).getY());
-      if(r<=50){
+      if(r<=40){
         rocks.remove(i);
+        noStroke();
+        fill(220,0,200);
+        ellipse((float)torpedoes.get(j).getX(),(float)torpedoes.get(j).getY(),80,80);
+        ellipse((float)torpedoes.get(j).getX(),(float)torpedoes.get(j).getY(),80,80);
         torpedoes.remove(j);
         break;
       }
